@@ -253,6 +253,18 @@
                 };
         };
 
+        macros {
+                ctrl_shft_esc: ctrl_shft_esc {
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings
+                                = <&macro_press &kp LCTRL &kp LSHFT>
+                                , <&macro_tap &kp ESC>
+                                , <&macro_release &kp LCTRL &kp LSHFT>
+                                ;
+                        };
+                };
+
         combos {
                 compatible = "zmk,combos";
                 combo_tab {
@@ -342,15 +354,15 @@
 
                 bt_layer{
 // -----------------------------------------------------------------------------------------
-// |      |     |     |     |     |     |   |     |     |     |     |     |      |
-// | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   |     |     |     |     |     |      |
-// |      |     |     |     |     |     |   |     |     |     |     |     |      |
+// | CTRL-SHFT-ESC |     |     |     |     |     |   |     |     |     |     |     |      |
+// | BTCLR         | BT1 | BT2 | BT3 | BT4 | BT5 |   |     |     |     |     |     |      |
+// |               |     |     |     |     |     |   |     |     |     |     |     |      |
 //                    | GUI | L-0 | ENT |   | SPC | L-1 | ALT |
                         label = "BT";
                         bindings = <
-   &trans     &trans       &trans       &trans       &trans       &trans         &trans    &trans &trans   &trans &trans &trans
-   &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &trans    &trans &trans   &trans &trans &trans
-   &trans     &trans       &trans       &trans       &trans       &trans         &trans    &trans &trans   &trans &trans &trans
+   &ctrl_shft_esc &trans       &trans       &trans       &trans       &trans         &trans    &trans &trans   &trans &trans &trans
+   &bt BT_CLR     &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &trans    &trans &trans   &trans &trans &trans
+   &trans         &trans       &trans       &trans       &trans       &trans         &trans    &trans &trans   &trans &trans &trans
                                         &kp LGUI     &to 0        &kp RET        &kp SPACE &to 1  &kp RALT 
                         >;
                 };
